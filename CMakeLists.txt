@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Setup for GTest
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/googletest/CMakeLists.txt")
-      message(FATAL_ERROR "Could not find googletest: run\n\tgit submodule update --init --recursive\nin base git checkout")
+    message(FATAL_ERROR "Could not find googletest: run\n\tgit submodule update --init --recursive\nin base git checkout")
 endif()
 
 add_subdirectory(googletest)

@@ -1,0 +1,1 @@
+# gtest-for-rust-lib

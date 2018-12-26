@@ -7,3 +7,5 @@ make
 ./test_sanity
 
 ./test_rust
+
+./test_death

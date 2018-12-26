@@ -5,3 +5,8 @@
 pub extern "C" fn cubic(x: u32) -> u32 {
     x * x * x
 }
+
+#[no_mangle]
+pub extern "C" fn boom() {
+    assert!(false);
+}

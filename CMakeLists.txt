@@ -39,3 +39,12 @@ target_link_libraries(test_rust PRIVATE
     optimized "${PROJECT_SOURCE_DIR}/rustlib/libdemo.a"
     gtest_main
 )
+
+add_executable(test_death tests/test_death.cpp)
+add_dependencies(test_death rslib)
+target_include_directories(test_death PRIVATE ${gtest_SOURCE_DIR}/include)
+target_link_libraries(test_death PRIVATE
+    debug "${PROJECT_SOURCE_DIR}/rustlib/libdemo.a"
+    optimized "${PROJECT_SOURCE_DIR}/rustlib/libdemo.a"
+    gtest_main
+)

@@ -14,7 +14,28 @@ endif()
 
 add_subdirectory(googletest)
 
+# Build external library
+include(ExternalProject)
+ExternalProject_Add(
+    rslib
+    DOWNLOAD_COMMAND ""
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND rustc --crate-type=staticlib demo.rs
+    BINARY_DIR "${PROJECT_SOURCE_DIR}/rustlib"
+    INSTALL_COMMAND ""
+    LOG_BUILD ON
+)
+
 # Build tests
 add_executable(test_sanity tests/test_sanity.cpp)
 target_include_directories(test_sanity PRIVATE ${gtest_SOURCE_DIR}/include)
 target_link_libraries(test_sanity PRIVATE gtest_main)
+
+add_executable(test_rust tests/test_rust.cpp)
+add_dependencies(test_rust rslib)
+target_include_directories(test_rust PRIVATE ${gtest_SOURCE_DIR}/include)
+target_link_libraries(test_rust PRIVATE
+    debug "${PROJECT_SOURCE_DIR}/rustlib/libdemo.a"
+    optimized "${PROJECT_SOURCE_DIR}/rustlib/libdemo.a"
+    gtest_main
+)

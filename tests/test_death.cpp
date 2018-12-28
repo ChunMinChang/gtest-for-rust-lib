@@ -38,12 +38,14 @@ TEST(gtest_rust, c_throw_an_exception_again) {
 }
 
 // Hitting a Rust assertion twice
+// This is not possible! See
+// https://users.rust-lang.org/t/how-to-write-a-death-test-in-gtest-for-rust-apis/
 // ----------------------------------------------------------------------------
-TEST(gtest_rust, rust_death) {
-    ASSERT_ANY_THROW(boom());
-}
+// TEST(gtest_rust, rust_death) {
+//     ASSERT_ANY_THROW(boom());
+// }
 
-// This test will stop in the middle when `boom()` is called again!
-TEST(gtest_rust, rust_death_again) {
-    ASSERT_ANY_THROW(boom());
-}
+// // This test will stop in the middle when `boom()` is called again!
+// TEST(gtest_rust, rust_death_again) {
+//     ASSERT_ANY_THROW(boom());
+// }
